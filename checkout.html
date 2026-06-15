@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>수강 신청 · CODEWAVE</title>
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('cw-theme'),m=localStorage.getItem('cw-mode');if(t)document.documentElement.dataset.theme=t;if(m==='dark')document.documentElement.dataset.mode='dark';}catch(e){}})();</script>
+<meta name="description" content="CODEWAVE 수강 신청. 7일 무료 체험, 100% 환불 보장으로 부담 없이 시작하세요.">
+<meta property="og:site_name" content="CODEWAVE">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://codewave.kr/checkout.html">
+<meta property="og:title" content="수강 신청 · CODEWAVE">
+<meta property="og:description" content="7일 무료 체험 · 100% 환불 보장. 지금 바로 학습을 시작하세요.">
+<meta property="og:image" content="https://codewave.kr/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="수강 신청 · CODEWAVE">
+<meta name="twitter:description" content="7일 무료 체험 · 100% 환불 보장.">
+<meta name="twitter:image" content="https://codewave.kr/assets/og-image.png">
+<style>
+.co-wrap{ padding:calc(var(--nav-h) + 50px) 0 90px; }
+.steps{ display:flex; align-items:center; gap:8px; margin-bottom:44px; max-width:520px; }
+.step{ display:flex; align-items:center; gap:10px; }
+.step .dot{ width:34px; height:34px; border-radius:50%; display:grid; place-items:center; font-weight:700; font-size:15px; background:var(--paper-3); color:var(--txt-3); transition:.3s; flex:none; }
+.step.active .dot{ background:var(--blue); color:#fff; }
+.step.done .dot{ background:var(--ink); color:#fff; }
+.step .lbl{ font-weight:600; font-size:14.5px; color:var(--txt-3); white-space:nowrap; }
+.step.active .lbl, .step.done .lbl{ color:var(--txt); }
+.step .bar{ width:40px; height:2px; background:var(--paper-3); }
+.step.done .bar{ background:var(--ink); }
+
+.co-grid{ display:grid; grid-template-columns:1fr 360px; gap:48px; align-items:start; }
+@media (max-width:900px){ .co-grid{ grid-template-columns:1fr; } }
+
+.field{ margin-bottom:20px; }
+.field label{ display:block; font-weight:600; font-size:14.5px; margin-bottom:8px; }
+.field input, .field select{ width:100%; padding:14px 16px; border:1.5px solid var(--line); border-radius:var(--r-sm); font-family:inherit; font-size:15.5px; outline:none; transition:border-color .2s; background:var(--paper); color:var(--txt); } }
+.field input:focus, .field select:focus{ border-color:var(--blue); }
+.field input.err{ border-color:#e23; }
+.field .msg{ color:#e23; font-size:13px; margin-top:6px; display:none; }
+.field input.err + .msg{ display:block; }
+.row2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+.paymethods{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:24px; }
+.pm{ border:1.5px solid var(--line); border-radius:var(--r); padding:18px; cursor:pointer; display:flex; align-items:center; gap:12px; font-weight:600; transition:.2s; background:var(--paper); }
+.pm:hover{ border-color:var(--line-strong); }
+.pm.on{ border-color:var(--blue); background:rgba(45,91,255,.05); box-shadow:0 0 0 3px rgba(45,91,255,.12); }
+.pm .r{ width:20px; height:20px; border-radius:50%; border:2px solid var(--line); flex:none; display:grid; place-items:center; }
+.pm.on .r{ border-color:var(--blue); } .pm.on .r::after{ content:""; width:10px; height:10px; border-radius:50%; background:var(--blue); }
+
+.summary{ position:sticky; top:calc(var(--nav-h) + 20px); border:1px solid var(--line); border-radius:var(--r-lg); overflow:hidden; box-shadow:var(--shadow-sm); background:var(--paper); }
+.summary .top{ padding:22px; display:flex; gap:14px; align-items:center; border-bottom:1px solid var(--line); }
+.summary .top .ic{ width:56px; height:56px; border-radius:14px; display:grid; place-items:center; color:#fff; font-family:var(--display); font-weight:700; font-size:26px; flex:none; }
+.summary .lines{ padding:22px; }
+.summary .ln{ display:flex; justify-content:space-between; margin-bottom:12px; color:var(--txt-2); font-size:15px; }
+.summary .ln.total{ border-top:1px solid var(--line); padding-top:16px; margin-top:16px; color:var(--txt); font-weight:800; font-size:20px; }
+.summary .ln.total .v{ font-family:var(--display); }
+.coupon{ display:flex; gap:8px; margin:4px 22px 22px; }
+.coupon input{ flex:1; padding:11px 14px; border:1.5px solid var(--line); border-radius:var(--r-sm); font-family:inherit; outline:none; background:var(--paper); color:var(--txt); }
+
+.success{ text-align:center; padding:40px 0; }
+.success .check{ width:96px; height:96px; border-radius:50%; background:var(--grad-wave); display:grid; place-items:center; margin:0 auto 28px; animation:pop .5s cubic-bezier(.2,1.4,.4,1) both; }
+@keyframes pop{ from{ transform:scale(0); } }
+.success h1{ font-size:clamp(34px,5vw,56px); }
+.nextcards{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:720px; margin:40px auto 0; }
+.nextcards .nc{ border:1px solid var(--line); border-radius:var(--r); padding:22px; text-align:left; background:var(--paper); }
+@media (max-width:700px){ .nextcards{ grid-template-columns:1fr; } .row2,.paymethods{ grid-template-columns:1fr; } }
+.hide{ display:none; }
+</style>
+</head>
+<body data-page="">
+
+<div class="co-wrap wrap">
+  <div id="flow">
+    <div class="steps" id="steps">
+      <div class="step active" data-s="1"><span class="dot">1</span><span class="lbl">정보 입력</span></div>
+      <span class="bar"></span>
+      <div class="step" data-s="2"><span class="dot">2</span><span class="lbl">결제</span></div>
+      <span class="bar"></span>
+      <div class="step" data-s="3"><span class="dot">3</span><span class="lbl">완료</span></div>
+    </div>
+
+    <div class="co-grid">
+      <div>
+        <!-- STEP 1 -->
+        <div class="pane" data-pane="1">
+          <h2 class="h-m" style="margin-bottom:6px">수강생 정보</h2>
+          <p style="color:var(--txt-3);margin:0 0 28px">수강증과 알림을 받을 정보를 입력해 주세요.</p>
+          <div class="row2">
+            <div class="field"><label>이름</label><input id="f-name" placeholder="홍길동"><div class="msg">이름을 입력해 주세요.</div></div>
+            <div class="field"><label>휴대폰</label><input id="f-phone" placeholder="010-0000-0000"><div class="msg">연락처를 입력해 주세요.</div></div>
+          </div>
+          <div class="field"><label>이메일</label><input id="f-email" type="email" placeholder="you@example.com"><div class="msg">올바른 이메일을 입력해 주세요.</div></div>
+          <div class="field"><label>학습 목표 <span style="color:var(--txt-3);font-weight:400">(선택)</span></label>
+            <select id="f-goal"><option>취업 / 이직</option><option>자격증 취득</option><option>실무 역량 강화</option><option>사이드 프로젝트</option><option>취미 / 자기계발</option></select>
+          </div>
+          <button class="btn btn-accent" data-magnet style="width:100%;justify-content:center;padding:16px;font-size:16px;margin-top:8px" onclick="next(1)">결제 단계로 →</button>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="pane hide" data-pane="2">
+          <h2 class="h-m" style="margin-bottom:6px">결제 수단</h2>
+          <p style="color:var(--txt-3);margin:0 0 24px">7일 이내 100% 환불 보장. 부담 없이 시작하세요.</p>
+          <div class="paymethods" id="pms">
+            <div class="pm on" data-pm="card"><span class="r"></span>신용/체크카드</div>
+            <div class="pm" data-pm="kakao"><span class="r"></span>카카오페이</div>
+            <div class="pm" data-pm="naver"><span class="r"></span>네이버페이</div>
+            <div class="pm" data-pm="trans"><span class="r"></span>계좌이체</div>
+          </div>
+          <div id="cardform">
+            <div class="field"><label>카드 번호</label><input id="f-card" placeholder="0000 0000 0000 0000" inputmode="numeric"><div class="msg">카드 번호를 입력해 주세요.</div></div>
+            <div class="row2">
+              <div class="field"><label>유효기간</label><input id="f-exp" placeholder="MM / YY"><div class="msg">유효기간을 입력해 주세요.</div></div>
+              <div class="field"><label>CVC</label><input id="f-cvc" placeholder="***" inputmode="numeric"><div class="msg">CVC를 입력해 주세요.</div></div>
+            </div>
+          </div>
+          <label style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--txt-2);margin:8px 0 22px">
+            <input type="checkbox" id="f-agree" style="width:18px;height:18px;margin-top:2px"> 결제 진행 및 환불 정책, 개인정보 수집·이용에 동의합니다.</label>
+          <div style="display:flex;gap:12px">
+            <button class="btn btn-ghost" style="flex:none" onclick="back(2)">← 이전</button>
+            <button class="btn btn-accent" data-magnet style="flex:1;justify-content:center;padding:16px;font-size:16px" id="paybtn" onclick="pay()"></button>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="pane hide" data-pane="3">
+          <div class="success">
+            <div class="check"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <span class="chip chip-lime">결제 완료</span>
+            <h1 class="display" style="margin:18px 0 12px">수강 신청 완료! 🎉</h1>
+            <p class="lead" id="donemsg" style="max-width:480px;margin:0 auto"></p>
+            <div class="nextcards">
+              <div class="nc"><div style="font-size:24px">📺</div><h4 style="margin:10px 0 6px;font-size:17px">바로 학습 시작</h4><p style="margin:0;color:var(--txt-3);font-size:14px">첫 강의가 열렸어요.</p></div>
+              <div class="nc"><div style="font-size:24px">📧</div><h4 style="margin:10px 0 6px;font-size:17px">확인 메일 발송</h4><p style="margin:0;color:var(--txt-3);font-size:14px">영수증을 보냈어요.</p></div>
+              <div class="nc"><div style="font-size:24px">🤝</div><h4 style="margin:10px 0 6px;font-size:17px">멘토 배정</h4><p style="margin:0;color:var(--txt-3);font-size:14px">곧 안내드릴게요.</p></div>
+            </div>
+            <div style="display:flex;gap:12px;justify-content:center;margin-top:36px;flex-wrap:wrap">
+              <a href="courses.html" class="btn btn-accent" data-magnet>다른 코스 보기</a>
+              <a href="index.html" class="btn btn-ghost">홈으로</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUMMARY -->
+      <aside id="summary-wrap">
+        <div class="summary">
+          <div class="top"><div class="ic" id="s-ic"></div><div><div style="font-size:13px;color:var(--txt-3)">선택한 코스</div><div style="font-weight:700;font-size:16px;line-height:1.3" id="s-title"></div></div></div>
+          <div class="coupon"><input placeholder="쿠폰 코드" id="coupon-in"><button class="btn btn-ghost" style="padding:11px 16px;font-size:14px" onclick="applyCoupon()">적용</button></div>
+          <div class="lines">
+            <div class="ln"><span>정가</span><span id="s-was"></span></div>
+            <div class="ln"><span>코스 할인</span><span id="s-disc" style="color:var(--blue)"></span></div>
+            <div class="ln" id="s-couponline" style="display:none"><span>쿠폰 (WELCOME10)</span><span id="s-coupon" style="color:var(--blue)"></span></div>
+            <div class="ln total"><span>총 결제금액</span><span class="v" id="s-total"></span></div>
+          </div>
+        </div>
+        <p style="color:var(--txt-3);font-size:13px;text-align:center;margin-top:16px">🔒 안전한 결제 · 7일 환불 보장</p>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<script src="assets/data.js"></script>
+<script src="assets/chrome.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/theme.js"></script>
+<script>
+const id = new URLSearchParams(location.search).get('id') || 'fe';
+const c = COURSES.find(x=>x.id===id) || COURSES[0];
+let couponOn = false;
+
+document.getElementById('s-ic').style.background = c.grad;
+document.getElementById('s-ic').innerHTML = c.icon;
+document.getElementById('s-title').textContent = c.title;
+
+function money(n){ return n.toLocaleString('ko-KR')+'원'; }
+function render(){
+  let total = c.price;
+  document.getElementById('s-was').textContent = money(c.was);
+  document.getElementById('s-disc').textContent = '-'+money(c.was-c.price);
+  if(couponOn){ total = Math.round(c.price*0.9); document.getElementById('s-couponline').style.display='flex';
+    document.getElementById('s-coupon').textContent = '-'+money(c.price-total); }
+  else document.getElementById('s-couponline').style.display='none';
+  document.getElementById('s-total').textContent = money(total);
+  document.getElementById('paybtn').textContent = money(total)+' 결제하기';
+  return total;
+}
+function applyCoupon(){
+  const v = document.getElementById('coupon-in').value.trim().toUpperCase();
+  if(v==='WELCOME10'){ couponOn=true; render(); document.getElementById('coupon-in').disabled=true; }
+  else { couponOn=false; render(); alert('유효하지 않은 쿠폰입니다. (데모: WELCOME10)'); }
+}
+render();
+
+function setStep(n){
+  document.querySelectorAll('.step').forEach(s=>{ const sn=+s.dataset.s; s.classList.toggle('active',sn===n); s.classList.toggle('done',sn<n); });
+  document.querySelectorAll('.pane').forEach(p=> p.classList.toggle('hide', +p.dataset.pane!==n));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function bad(el){ el.classList.add('err'); el.addEventListener('input',()=>el.classList.remove('err'),{once:true}); }
+function next(step){
+  if(step===1){
+    let ok=true;
+    const name=document.getElementById('f-name'), email=document.getElementById('f-email'), phone=document.getElementById('f-phone');
+    if(!name.value.trim()){ bad(name); ok=false; }
+    if(!phone.value.trim()){ bad(phone); ok=false; }
+    if(!/.+@.+\..+/.test(email.value)){ bad(email); ok=false; }
+    if(!ok) return;
+    setStep(2);
+  }
+}
+function back(step){ setStep(step-1); }
+
+// payment method toggle
+document.getElementById('pms').addEventListener('click',e=>{
+  const pm=e.target.closest('.pm'); if(!pm)return;
+  document.querySelectorAll('.pm').forEach(x=>x.classList.remove('on')); pm.classList.add('on');
+  document.getElementById('cardform').style.display = pm.dataset.pm==='card'?'block':'none';
+});
+
+function pay(){
+  const method = document.querySelector('.pm.on').dataset.pm;
+  const agree = document.getElementById('f-agree');
+  let ok=true;
+  if(method==='card'){
+    ['f-card','f-exp','f-cvc'].forEach(idd=>{ const el=document.getElementById(idd); if(!el.value.trim()){ bad(el); ok=false; } });
+  }
+  if(!agree.checked){ ok=false; agree.parentElement.style.color='#e23'; }
+  if(!ok) return;
+  const btn=document.getElementById('paybtn'); btn.textContent='결제 처리 중...'; btn.style.opacity=.7;
+  setTimeout(()=>{
+    setStep(3);
+    document.getElementById('summary-wrap').style.display='none';
+    const total = couponOn? Math.round(c.price*0.9):c.price;
+    document.getElementById('donemsg').textContent = `${c.title} 수강 신청이 완료되었습니다. ${money(total)} 결제 · ${document.getElementById('f-email').value||'등록하신 이메일'}로 영수증을 보냈어요.`;
+  }, 1100);
+}
+</script>
+</body>
+</html>

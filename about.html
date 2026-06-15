@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회사 소개 · CODEWAVE</title>
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('cw-theme'),m=localStorage.getItem('cw-mode');if(t)document.documentElement.dataset.theme=t;if(m==='dark')document.documentElement.dataset.mode='dark';}catch(e){}})();</script>
+<meta name="description" content="배우는 모두가 성장하는 세상을 만듭니다. CODEWAVE의 미션과 여정을 소개합니다.">
+<meta property="og:site_name" content="CODEWAVE">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://codewave.kr/about.html">
+<meta property="og:title" content="회사 소개 · CODEWAVE">
+<meta property="og:description" content="배우는 모두가 성장하는 세상을. 누적 수강생 3.8만 명, 취업 성공률 94.2%의 학습 파트너.">
+<meta property="og:image" content="https://codewave.kr/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="회사 소개 · CODEWAVE">
+<meta name="twitter:description" content="배우는 모두가 성장하는 세상을 만듭니다.">
+<meta name="twitter:image" content="https://codewave.kr/assets/og-image.png">
+<style>
+.about-hero{ padding:calc(var(--nav-h) + 90px) 0 80px; position:relative; overflow:hidden; }
+.about-hero .blob.x1{ width:520px; height:520px; background:var(--purple); top:-180px; left:-120px; opacity:.16; }
+.about-hero .blob.x2{ width:420px; height:420px; background:var(--cyan); bottom:-200px; right:-80px; opacity:.18; }
+.about-hero h1{ font-size:clamp(44px,8vw,120px); max-width:900px; }
+.mission{ background:var(--ink); color:#fff; border-radius:var(--r-xl); padding:80px; position:relative; overflow:hidden; }
+.mission .blob{ width:380px; height:380px; background:var(--blue); top:-140px; right:-60px; opacity:.4; }
+.mission h2{ font-size:clamp(28px,3.4vw,46px); max-width:780px; line-height:1.25; }
+.values{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.val{ border:1px solid var(--line); border-radius:var(--r-lg); padding:34px; transition:.3s; }
+.val:hover{ transform:translateY(-6px); box-shadow:var(--shadow); }
+.val .n{ font-family:var(--display); font-weight:700; font-size:15px; color:var(--blue); letter-spacing:.1em; }
+.val h3{ font-size:24px; margin:14px 0 10px; }
+.val p{ color:var(--txt-2); margin:0; font-size:15.5px; }
+.timeline{ position:relative; padding-left:30px; }
+.timeline::before{ content:""; position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:var(--line); }
+.tl-item{ position:relative; padding:0 0 44px 30px; }
+.tl-item::before{ content:""; position:absolute; left:-30px; top:6px; width:14px; height:14px; border-radius:50%; background:var(--blue); box-shadow:0 0 0 4px rgba(45,91,255,.16); }
+.tl-item .yr{ font-family:var(--display); font-weight:700; font-size:22px; color:var(--blue); }
+.tl-item h4{ font-size:19px; margin:6px 0 6px; }
+.tl-item p{ color:var(--txt-2); margin:0; }
+@media (max-width:760px){ .values{ grid-template-columns:1fr; } .mission{ padding:44px 28px; } }
+</style>
+</head>
+<body data-page="about">
+
+<header class="about-hero wrap">
+  <div class="blob x1"></div><div class="blob x2"></div>
+  <span class="eyebrow" data-reveal>About CODEWAVE</span>
+  <h1 class="display" data-reveal data-d="1" style="margin-top:20px">배우는 모두가<br><span class="text-grad">성장</span>하는<br>세상을 만듭니다</h1>
+  <p class="lead" data-reveal data-d="2" style="max-width:600px;margin-top:28px">CODEWAVE는 "누구나 코드로 커리어를 바꿀 수 있다"는 믿음에서 시작했습니다. 강의를 파는 회사가 아니라, 끝까지 완주시키는 학습 파트너입니다.</p>
+</header>
+
+<section class="section" style="padding-top:20px">
+  <div class="wrap">
+    <div class="mission" data-reveal>
+      <div class="blob"></div>
+      <span class="eyebrow" style="color:var(--cyan)">Our Mission</span>
+      <h2 class="display" style="margin-top:22px">"배움과 성장 사이의<br>거리를 0으로."</h2>
+      <p class="lead" style="color:rgba(255,255,255,.8);max-width:640px;margin-top:24px">시청만으로는 실력이 늘지 않습니다. 우리는 실시간 코드 리뷰, 프로젝트 멘토링, 취업 연계까지 — 배움이 곧 결과가 되도록 모든 과정을 설계합니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="grid g-4" style="text-align:center">
+      <div data-reveal><div class="display" style="font-size:clamp(40px,5vw,64px)"><span data-count="38000">0</span></div><div style="color:var(--txt-3);font-weight:600;margin-top:6px">누적 수강생</div></div>
+      <div data-reveal data-d="1"><div class="display" style="font-size:clamp(40px,5vw,64px)"><span data-count="94.2">0</span>%</div><div style="color:var(--txt-3);font-weight:600;margin-top:6px">취업 성공률</div></div>
+      <div data-reveal data-d="2"><div class="display" style="font-size:clamp(40px,5vw,64px)"><span data-count="500">0</span>+</div><div style="color:var(--txt-3);font-weight:600;margin-top:6px">채용 파트너사</div></div>
+      <div data-reveal data-d="3"><div class="display" style="font-size:clamp(40px,5vw,64px)"><span data-count="120">0</span>+</div><div style="color:var(--txt-3);font-weight:600;margin-top:6px">실무 코스</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="shead"><div class="t" data-reveal><span class="eyebrow">Our Values</span><h2 class="h-l">우리가 일하는 방식</h2></div></div>
+    <div class="values">
+      <div class="val" data-reveal><div class="n">01</div><h3>학습자 우선</h3><p>모든 의사결정의 기준은 "이게 수강생의 성장에 도움이 되는가"입니다.</p></div>
+      <div class="val" data-reveal data-d="1"><div class="n">02</div><h3>결과로 증명</h3><p>좋은 강의가 아니라 좋은 결과. 완주율과 합격률, 취업률로 말합니다.</p></div>
+      <div class="val" data-reveal data-d="2"><div class="n">03</div><h3>현업의 진짜</h3><p>이론을 위한 이론은 없습니다. 현업 최전선에서 쓰는 것만 가르칩니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section">
+  <div class="wrap" style="max-width:760px;margin-inline:auto">
+    <div class="shead"><div class="t" data-reveal><span class="eyebrow">Journey</span><h2 class="h-l">CODEWAVE의 여정</h2></div></div>
+    <div class="timeline">
+      <div class="tl-item" data-reveal><div class="yr">2021</div><h4>작은 코딩 스터디로 시작</h4><p>30명의 비전공자와 함께한 첫 부트캠프. 24명이 6개월 만에 개발자로 취업했습니다.</p></div>
+      <div class="tl-item" data-reveal data-d="1"><div class="yr">2023</div><h4>자격증·컴퓨터 활용 트랙 확장</h4><p>코딩을 넘어 국가 자격증과 실무 생산성 교육까지. 누적 수강생 1만 명 돌파.</p></div>
+      <div class="tl-item" data-reveal data-d="2"><div class="yr">2024</div><h4>1:1 실시간 코드 리뷰 도입</h4><p>업계 최초 30분 내 코드 리뷰 시스템. 완주율이 2.3배 높아졌습니다.</p></div>
+      <div class="tl-item" data-reveal data-d="3"><div class="yr">2026</div><h4>500+ 파트너사 채용 네트워크</h4><p>이제 배움이 취업으로 직결됩니다. 누적 수강생 3.8만 명, 함께 성장 중.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div data-reveal style="background:var(--grad-cool);border-radius:var(--r-xl);padding:80px 60px;text-align:center;color:#fff;position:relative;overflow:hidden">
+      <div class="blob" style="width:300px;height:300px;background:#fff;opacity:.16;top:-100px;right:-40px"></div>
+      <h2 class="display" style="font-size:clamp(32px,4.5vw,60px)">함께 성장할 준비가 됐나요?</h2>
+      <p class="lead" style="color:rgba(255,255,255,.9);margin:18px auto 32px;max-width:480px">지금 시작하면 첫 코스 7일 무료 체험.</p>
+      <a href="courses.html" class="btn btn-lime" data-magnet style="font-size:17px;padding:17px 34px">코스 둘러보기</a>
+    </div>
+  </div>
+</section>
+
+<script src="assets/data.js"></script>
+<script src="assets/chrome.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/theme.js"></script>
+</body>
+</html>

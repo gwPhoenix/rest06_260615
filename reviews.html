@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>수강 후기 · CODEWAVE</title>
+<link rel="stylesheet" href="assets/site.css">
+<script>(function(){try{var t=localStorage.getItem('cw-theme'),m=localStorage.getItem('cw-mode');if(t)document.documentElement.dataset.theme=t;if(m==='dark')document.documentElement.dataset.mode='dark';}catch(e){}})();</script>
+<meta name="description" content="결과로 말하는 12,800+ 수강 후기. 합격과 취업으로 증명하는 CODEWAVE.">
+<meta property="og:site_name" content="CODEWAVE">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://codewave.kr/reviews.html">
+<meta property="og:title" content="수강 후기 · CODEWAVE">
+<meta property="og:description" content="평점 4.9/5.0, 12,800+ 실제 수강 후기. 합격과 취업으로 증명합니다.">
+<meta property="og:image" content="https://codewave.kr/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="수강 후기 · CODEWAVE">
+<meta name="twitter:description" content="평점 4.9/5.0 · 12,800+ 실제 후기.">
+<meta name="twitter:image" content="https://codewave.kr/assets/og-image.png">
+<style>
+.page-hero{ padding:calc(var(--nav-h) + 80px) 0 50px; background:var(--paper-2); position:relative; overflow:hidden; }
+.page-hero .blob{ width:480px; height:480px; background:var(--lime); top:-220px; right:-60px; opacity:.3; }
+.page-hero h1{ font-size:clamp(42px,7vw,96px); }
+.rate-row{ display:flex; gap:40px; align-items:center; margin-top:30px; flex-wrap:wrap; }
+.rate-row .big{ font-family:var(--display); font-weight:700; font-size:72px; line-height:1; }
+.masonry{ columns:3; column-gap:24px; }
+.masonry > div{ break-inside:avoid; margin-bottom:24px; }
+@media (max-width:920px){ .masonry{ columns:2; } }
+@media (max-width:600px){ .masonry{ columns:1; } }
+.review{ border:1px solid var(--line); border-radius:var(--r-lg); padding:28px; background:var(--paper); transition:.3s; }
+.review:hover{ box-shadow:var(--shadow); transform:translateY(-4px); }
+.review .stars{ color:#f5b400; font-size:16px; letter-spacing:2px; }
+.review p{ font-size:16.5px; line-height:1.6; margin:14px 0 20px; }
+.review .who{ display:flex; align-items:center; gap:12px; }
+.review .who .av{ width:44px; height:44px; border-radius:50%; display:grid; place-items:center; color:#fff; font-weight:700; }
+.review .job{ display:inline-block; margin-top:14px; }
+.fbar{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:34px; }
+.fbtn{ border:1.5px solid var(--line); background:var(--paper); padding:9px 18px; border-radius:100px; font-weight:600; font-size:14px; color:var(--txt-2); transition:.2s; white-space:nowrap; }
+.fbtn.on{ background:var(--ink); color:#fff; border-color:var(--ink); }
+</style>
+</head>
+<body data-page="reviews">
+
+<header class="page-hero">
+  <div class="blob"></div>
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Real Stories</span>
+    <h1 class="display" data-reveal data-d="1" style="margin-top:16px">결과로 말하는<br>수강 후기</h1>
+    <div class="rate-row" data-reveal data-d="2">
+      <div><div class="big">4.9<span style="font-size:.4em;color:var(--txt-3)">/5.0</span></div><div style="color:#f5b400;font-size:20px;letter-spacing:2px;margin-top:6px">★★★★★</div></div>
+      <div style="max-width:380px;color:var(--txt-2)">전체 <b style="color:var(--txt)">12,800개</b> 이상의 실제 수강 후기에서 집계된 만족도입니다. 합격과 취업으로 증명합니다.</div>
+    </div>
+  </div>
+</header>
+
+<section class="section" style="padding-top:50px">
+  <div class="wrap">
+    <div class="fbar" id="fbar">
+      <button class="fbtn on" data-f="전체">전체</button>
+      <button class="fbtn" data-f="코딩">코딩</button>
+      <button class="fbtn" data-f="자격증">자격증</button>
+      <button class="fbtn" data-f="컴퓨터활용">컴퓨터활용</button>
+    </div>
+    <div class="masonry" id="masonry"></div>
+  </div>
+</section>
+
+<script src="assets/data.js"></script>
+<script src="assets/chrome.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/theme.js"></script>
+<script>
+// map review to category via course keyword
+function catOf(r){
+  if(/정보처리|SQLD|컴퓨터활용/.test(r.course)) return /컴퓨터활용/.test(r.course)?'컴퓨터활용':'자격증';
+  if(/엑셀|데이터 분석 수료/.test(r.course)) return '컴퓨터활용';
+  return '코딩';
+}
+// expand reviews x2 with variety for a fuller wall
+const ALL = REVIEWS.concat(REVIEWS.map(r=>({...r})));
+let filt='전체';
+function render(){
+  const list = ALL.filter(r=> filt==='전체' || catOf(r)===filt);
+  document.getElementById('masonry').innerHTML = list.map((r,i)=>`
+    <div data-reveal data-d="${i%3}">
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>"${r.text}"</p>
+        <div class="who"><div class="av" style="background:${r.grad}">${r.initial}</div>
+          <div><div style="font-weight:700">${r.name}</div><div style="color:var(--txt-3);font-size:13px">${r.course}</div></div></div>
+        <span class="job chip chip-lime">🎉 ${r.job}</span>
+      </div>
+    </div>`).join('');
+  if(window.CW && CW.scan) CW.scan();
+}
+document.getElementById('fbar').addEventListener('click',e=>{
+  const b=e.target.closest('.fbtn'); if(!b)return;
+  document.querySelectorAll('.fbtn').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+  filt=b.dataset.f; render();
+});
+render();
+</script>
+</body>
+</html>
