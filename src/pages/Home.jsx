@@ -4,6 +4,7 @@ import { useReveal } from '../hooks/useReveal'
 import CourseCard from '../components/CourseCard'
 import InstructorCard from '../components/InstructorCard'
 import ReviewCard from '../components/ReviewCard'
+import ChatWidget from '../components/ChatWidget'
 import { COURSES, INSTRUCTORS, REVIEWS } from '../data/courses'
 
 const SKILLS = ['React','Python','Spring Boot','TypeScript','AWS','Next.js','Docker','SQL','TensorFlow','Figma','Node.js','Kubernetes','Flutter','GraphQL','Redis']
@@ -201,6 +202,8 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      <ChatWidget />
     </main>
   )
 }
