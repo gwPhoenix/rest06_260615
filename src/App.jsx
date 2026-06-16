@@ -3,6 +3,7 @@ import { AuthProvider } from './context/AuthContext'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import Cursor from './components/Cursor'
+import ChatWidget from './components/ChatWidget'
 import Home from './pages/Home'
 import About from './pages/About'
 import Courses from './pages/Courses'
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/profile"     element={<Profile />} />
         </Routes>
         <Footer />
+        <ChatWidget />
       </HashRouter>
     </AuthProvider>
   )
