@@ -124,7 +124,7 @@ button{ font-family:inherit; cursor:pointer; }
 /* ---- Type ---- */
 h1,h2,h3,h4{ margin:0; line-height:1.02; letter-spacing:-0.03em; font-weight:800; }
 .display{ font-family:var(--display); font-weight:700; letter-spacing:-0.04em; line-height:0.95; }
-.h-xxl{ font-size:clamp(48px,9vw,140px); }
+.h-xxl{ font-size:clamp(38px,6.5vw,104px); }
 .h-xl{ font-size:clamp(40px,6vw,86px); }
 .h-l{ font-size:clamp(32px,4.4vw,60px); }
 .h-m{ font-size:clamp(26px,3vw,40px); }
