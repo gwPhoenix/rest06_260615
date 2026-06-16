@@ -79,7 +79,6 @@ export default function ChatWidget() {
               </div>
             </div>
             <div className="chat-header-actions">
-              {/* 모델 선택 */}
               <div className="chat-model-tabs">
                 {MODELS.map(m => (
                   <button
@@ -146,18 +145,26 @@ export default function ChatWidget() {
         </div>
       )}
 
-      {/* 플로팅 버튼 */}
-      <button
-        className={`chat-fab${open ? ' active' : ''}`}
-        onClick={() => setOpen(v => !v)}
-        aria-label="AI 상담"
-      >
-        {open
-          ? <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
-          : <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm-1 13H8v-2h3v2zm5 0h-3v-2h3v2zm0-4H8V9h8v2z"/></svg>
-        }
-        {!open && <span className="chat-fab-badge" />}
-      </button>
+      {/* 플로팅 클러스터 (풍선도움말 + FAB) */}
+      <div className={`chat-float-cluster${!open ? ' floating' : ''}`}>
+        {!open && (
+          <div className="chat-tooltip">
+            <p className="chat-tooltip-msg">💬 AI 학습 도우미 — 특강 일정·n8n·AI 영상 등 궁금한 건 여기서 물어보세요!</p>
+            <button className="chat-tooltip-cta" onClick={() => setOpen(true)}>채팅 시작 ↗</button>
+          </div>
+        )}
+        <button
+          className={`chat-fab${open ? ' active' : ''}`}
+          onClick={() => setOpen(v => !v)}
+          aria-label="AI 상담"
+        >
+          {open
+            ? <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            : <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm-1 13H8v-2h3v2zm5 0h-3v-2h3v2zm0-4H8V9h8v2z"/></svg>
+          }
+          {!open && <span className="chat-fab-badge" />}
+        </button>
+      </div>
     </div>
   )
 }
