@@ -42,9 +42,9 @@ export default function Home() {
   useReveal()
 
   return (
-    <main style={{ paddingTop: 'var(--nav-h)' }}>
+    <main>
       {/* ---- HERO ---- */}
-      <section style={{ minHeight: '92vh', display: 'flex', alignItems: 'center', background: 'var(--ink)', color: '#fff', position: 'relative', overflow: 'hidden', paddingTop: 80, paddingBottom: 80 }}>
+      <section style={{ minHeight: '92vh', display: 'flex', alignItems: 'center', background: 'var(--ink)', color: '#fff', position: 'relative', overflow: 'hidden', paddingTop: 'calc(var(--nav-h) + 80px)', paddingBottom: 80 }}>
         <div className="blob" style={{ width: 600, height: 600, background: 'var(--blue)', top: -200, right: -100, opacity: 0.25 }} />
         <div className="blob" style={{ width: 400, height: 400, background: 'var(--cyan)', bottom: -100, left: -80, opacity: 0.2 }} />
         <div className="wrap" style={{ position: 'relative', zIndex: 1 }}>
